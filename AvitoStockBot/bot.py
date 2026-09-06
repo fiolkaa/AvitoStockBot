@@ -13,7 +13,7 @@ import threading
 import os
 
 # --- НАСТРОЙКИ ---
-TOKEN = os.getenv"8742473118:AAGiLh0C_z7uymh21u5GyLWtD8ZYIb8uidc"  # ЗАМЕНИТЕ НА СВОЙ ТОКЕН
+TOKEN = os.getenv("8742473118:AAGiLh0C_z7uymh21u5GyLWtD8ZYIb8uidc")  # ЗАМЕНИТЕ НА СВОЙ ТОКЕН
 ADMIN_ID = 5212631029  # ВАШ TELEGRAM ID (узнать у @userinfobot)
 
 # --- ИНИЦИАЛИЗАЦИЯ ---
