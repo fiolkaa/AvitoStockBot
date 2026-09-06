@@ -8,6 +8,9 @@ from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, ReplyKeybo
 from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.fsm.context import FSMContext
+from flask import Flask
+import threading
+import os
 
 # --- НАСТРОЙКИ ---
 TOKEN = "8742473118:AAGkMqeDhWltLmVt4QwTlVIGDpOHBeLe7Uc"  # ЗАМЕНИТЕ НА СВОЙ ТОКЕН
@@ -621,6 +624,23 @@ async def back_to_items(callback: types.CallbackQuery):
         reply_markup=get_items_keyboard(category, subcategory)
     )
     await callback.answer()
+
+# --- FLASK ДЛЯ RENDER ---
+app = Flask(__name__)
+
+@app.route('/')
+def health():
+    return "Bot is running!"
+
+@app.route('/health')
+def health_check():
+    return "OK"
+
+def run_flask():
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 10000)))
+
+# Запускаем Flask в отдельном потоке
+threading.Thread(target=run_flask, daemon=True).start()
 
 # --- ЗАПУСК ---
 async def main():
